@@ -33,14 +33,17 @@ public class UploadView extends VerticalLayout {
         StreamResource imageResource = new StreamResource("webdev1.jpg",
                 () -> getClass().getResourceAsStream("/webdev1.jpg"));
         Image logo = new Image(imageResource, "Digital Disasters logo");
-        logo.setMaxWidth("200px");
+        logo.setMaxWidth("300px");
         HorizontalLayout logoLayout = new HorizontalLayout(logo);
         setHeightFull();
         setMaxWidth("500px");
         addClassNames(LumoUtility.Margin.Horizontal.AUTO);
         setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
-        add(logoLayout, new H1("Digital Disasters"), getForm());
+        H1 title = new H1("Digital Disasters");
+        title.getStyle().set("font-family", "Roboto, sans-serif");
+        title.getStyle().set("font-size", "3rem");
+        add(logoLayout, title, getForm());
         addAndExpand(new Scroller(memoriesList));
         updateMemories("");
     }
@@ -87,7 +90,7 @@ public class UploadView extends VerticalLayout {
         memoriesList.removeAll();
         service.findByTag(tag).forEach(mem -> {
             var img = new Image(mem.getImageUrl(), "Uploaded image");
-            img.setMaxWidth("100%");
+            img.setWidth("400px");
             img.addClickListener(e -> {
                 UI.getCurrent().navigate(ImageView.class, mem.getId());
             });
@@ -100,7 +103,7 @@ public class UploadView extends VerticalLayout {
                 tagButton.addThemeVariants(ButtonVariant.LUMO_SMALL);
                 tagLayout.add(tagButton);
             });
-            // Add a DELETE button
+
             Button deleteButton = new Button("DELETE");
             deleteButton.addThemeVariants(ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_SMALL);
             deleteButton.addClickListener(clickEvent -> {
