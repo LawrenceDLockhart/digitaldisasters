@@ -54,4 +54,8 @@ public class S3StorageService {
         URL url = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
         return url.toString();
     }
+
+    public void deleteFile(String key) {
+        s3Client.deleteObject(bucketName, key);
+    }
 }

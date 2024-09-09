@@ -62,4 +62,12 @@ public class S3MemoryService {
             return repository.findByTagsContaining(tag);
         }
     }
+    public void deleteMemory(Memory memory) {
+        try {
+            s3StorageService.deleteFile(memory.getImageUrl());
+            repository.delete(memory);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
