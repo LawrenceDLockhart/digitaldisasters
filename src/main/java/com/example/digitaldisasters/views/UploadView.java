@@ -42,7 +42,7 @@ public class UploadView extends VerticalLayout {
 
         H1 title = new H1("Digital Disasters");
         title.getStyle().set("font-family", "Roboto, sans-serif");
-        title.getStyle().set("font-size", "3rem");
+        title.getStyle().set("font-size", "3.5rem");
         add(logoLayout, title, getForm());
         addAndExpand(new Scroller(memoriesList));
         updateMemories("");
