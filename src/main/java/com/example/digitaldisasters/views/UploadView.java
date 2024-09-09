@@ -16,6 +16,7 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.upload.Upload;
 import com.vaadin.flow.component.upload.receivers.MemoryBuffer;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.StreamResource;
 
 import java.util.HashSet;
 import java.util.stream.Collectors;
@@ -28,8 +29,10 @@ public class UploadView extends VerticalLayout {
 
     public UploadView(S3MemoryService service) {
         this.service = service;
-
-        Image logo = new Image("main/resources/images/webdev1.jpg", "Digital Disasters logo");
+        StreamResource imageResource = new StreamResource("webdev1.jpg",
+                () -> getClass().getResourceAsStream("/webdev1.jpg"));
+        Image logo = new Image(imageResource, "Digital Disasters logo");
+        logo.setMaxWidth("200px");
         H1 h1 = new H1("Digital Disasters");
         h1.addClassName("lumo-center");
         H3 h3 = new H3("My Dev Diary");

@@ -31,7 +31,7 @@ public class ImageView extends VerticalLayout implements HasUrlParameter<Long> {
         // Change to textfield | create binder, update (need new update method in service), navigate to upload ivew
         Paragraph description = new Paragraph(memory.getDescription());
         Paragraph tags = new Paragraph(String.join(", ", memory.getTags()));
-        Button button = new Button("Home Page");
+        Button button = new Button("Home");
         button.addClickListener(e -> {
             UI.getCurrent().navigate("");
         });
