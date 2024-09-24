@@ -24,7 +24,7 @@ public class S3MemoryService {
 
     public Memory saveMemory(InputStream imageStream, String fileName, String description, Set<String> tags) {
         try {
-            // Generate a unique file name
+
             String extension = fileName.substring(fileName.lastIndexOf("."));
             String key = UUID.randomUUID() + extension;
 
@@ -43,16 +43,8 @@ public class S3MemoryService {
         }
     }
 
-    public List<Memory> findAll() {
-        return repository.findAll();
-    }
-
     public Memory findById(Long id) {
         return repository.findById(id).orElse(null);
-    }
-
-    public void updateMemory(Memory memory) {
-        repository.save(memory);
     }
 
     public List<Memory> findByTag(String tag) {
